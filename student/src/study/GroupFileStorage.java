@@ -22,12 +22,11 @@ public class GroupFileStorage {
         }
     }
 
-    public static Group loadGroupFromCSV(File file) throws IOException {
+    public static Group loadGroupFromCSV(File file) {
         Group newGroup = new Group("am3");
         Student stud = new Student();
-        BufferedReader br = new BufferedReader( new FileReader(file));
 
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String str;
             while ((str = br.readLine()) != null) {
                 stud = stud.fromCSVString(str);
@@ -36,9 +35,6 @@ public class GroupFileStorage {
         }
         catch (IOException | GroupOverflowException e) {
             System.out.println(e.getMessage());
-        }
-        finally {
-           br.close();
         }
         return newGroup;
     }
