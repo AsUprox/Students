@@ -8,7 +8,7 @@ public class GroupFileStorage {
                                     + gr.getGroupName()
                                     + ".csv");
         Student[] students = gr.getGroup();
-        String content = new String();
+        String content = "";
 
         for (Student st : students) {
             content += st.toCSVString();
@@ -26,7 +26,7 @@ public class GroupFileStorage {
         Group newGroup = new Group("am3");
         Student stud = new Student();
 
-        try (BufferedReader br = new BufferedReader( new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader( new FileReader(file)) ) {
             String str;
             while ((str = br.readLine()) != null) {
                 stud = stud.fromCSVString(str);
@@ -48,6 +48,7 @@ public class GroupFileStorage {
 
         if (!groupFile.isFile()) {
             System.out.println("Can't find " + workFolder + '/' + groupName + ".csv");
+            return null;
         }
 
         return groupFile;

@@ -58,6 +58,7 @@ public class Main {
 
         File myDir = new File("/home/scorp/1");
         File fff = GroupFileStorage.findFileByGroupName( "am3", myDir);
+        System.out.println(fff);
 
     /*
         // пробуем удалить
